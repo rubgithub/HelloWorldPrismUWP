@@ -14,9 +14,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock Text="Main Page"/>
-            <Button Content="Proxima página" Command="{Binding NavegarPriximaCommand}"/>
+        <StackPanel Orientation="Horizontal" Margin="10" Background="AliceBlue">
+            <TextBlock Text="Main Page" VerticalAlignment="Center"/>
+            <Border Opacity="0" Width="40"/>
+            <Button Content="Proxima" Command="{Binding NavegarProximaCommand}"/>
+            <Border Opacity="0" Width="10"/>
+            <Button Content="Voltar" Command="{Binding NavegarVoltaCommand}"/>
         </StackPanel>
         <ContentControl Grid.Row="1" x:Name="FrameHost"/>
     </Grid>
