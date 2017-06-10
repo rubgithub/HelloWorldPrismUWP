@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using HelloWorldPrism.Repository;
+using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
 
@@ -7,6 +8,8 @@ namespace HelloWorldPrism.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private readonly INavigationService _navigationService;
+        private readonly IProductRepository _productRepository;
+
         public DelegateCommand NavegarProximaCommand { get; }
         public DelegateCommand NavegarVoltaCommand { get; }
 
@@ -24,11 +27,21 @@ namespace HelloWorldPrism.ViewModels
         }
 
 
-        public MainViewModel(INavigationService navigationService)
+        public MainViewModel(INavigationService navigationService, IProductRepository productRepository)
         {
             _navigationService = navigationService;
+            _productRepository = productRepository;
+
             NavegarProximaCommand = new DelegateCommand(NavegarProxima).ObservesCanExecute(() => IsNextEnable);
             NavegarVoltaCommand =   new DelegateCommand(NavegarVolta).ObservesCanExecute(() => CanGoBack);
+
+            //TestIoC();
+        }
+
+        private void TestIoC()
+        {
+            _productRepository.Add("New produtct");
+            System.Diagnostics.Debug.Write(_productRepository.Get());
         }
 
 
