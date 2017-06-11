@@ -35,13 +35,13 @@ namespace HelloWorldPrism.ViewModels
             NavegarProximaCommand = new DelegateCommand(NavegarProxima).ObservesCanExecute(() => IsNextEnable);
             NavegarVoltaCommand =   new DelegateCommand(NavegarVolta).ObservesCanExecute(() => CanGoBack);
 
-            //TestIoC();
+            TestIoC();
         }
 
         private void TestIoC()
         {
             _productRepository.Add("New produtct");
-            System.Diagnostics.Debug.Write(_productRepository.Get());
+            System.Diagnostics.Debug.Write($"\n\n{_productRepository.Get()}\n\n");
         }
 
 

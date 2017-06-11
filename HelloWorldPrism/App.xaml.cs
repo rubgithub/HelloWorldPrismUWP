@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using HelloWorldPrism.Repository;
 using HelloWorldPrism.Views;
 using System;
 using System.Globalization;
@@ -10,7 +11,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace HelloWorldPrism
 {
-    sealed partial class App
+    sealed partial class App 
     {
         public App()
         {
@@ -35,6 +36,13 @@ namespace HelloWorldPrism
             if (type != null)
                 return type;
             throw new ArgumentException(string.Format(CultureInfo.InvariantCulture, ResourceLoader.GetForCurrentView("/Prism.Windows/Resources/").GetString("DefaultPageTypeLookupErrorMessage"), pageToken, GetType().Namespace + ".Views"), nameof(pageToken));
+        }
+
+        protected override void ConfigureContainer(ContainerBuilder builder)
+        {
+            base.ConfigureContainer(builder);
+
+            builder.RegisterType<ProductRepository>().As<IProductRepository>();
         }
     }
 }
