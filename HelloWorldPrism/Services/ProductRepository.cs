@@ -1,4 +1,4 @@
-﻿namespace HelloWorldPrism.Repository
+﻿namespace HelloWorldPrism.Services
 {
     public class ProductRepository : IProductRepository
     {

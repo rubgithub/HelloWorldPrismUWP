@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using HelloWorldPrism.Repository;
+using HelloWorldPrism.Services;
 using HelloWorldPrism.Views;
 using System;
 using System.Globalization;
@@ -41,7 +41,7 @@ namespace HelloWorldPrism
         protected override void ConfigureContainer(ContainerBuilder builder)
         {
             base.ConfigureContainer(builder);
-
+            //Logger.Log();
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
         }
     }

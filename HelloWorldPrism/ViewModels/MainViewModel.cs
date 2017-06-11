@@ -1,4 +1,4 @@
-﻿using HelloWorldPrism.Repository;
+﻿using HelloWorldPrism.Services;
 using Prism.Commands;
 using Prism.Windows.Mvvm;
 using Prism.Windows.Navigation;
@@ -47,6 +47,7 @@ namespace HelloWorldPrism.ViewModels
 
         private void NavegarVolta()
         {
+            //There is only on pege on stack
             //_navigationService.GoBack();
         }
 
