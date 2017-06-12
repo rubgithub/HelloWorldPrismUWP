@@ -1,7 +1,7 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
-    "Prism.Autofac": "6.3.0",
+    "Prism.SimpleInjector": "6.3.0",
     "Prism.Windows": "6.3.0"
   },
   "frameworks": {
