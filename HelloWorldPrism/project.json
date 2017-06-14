@@ -2,7 +2,8 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.3",
     "Prism.SimpleInjector": "6.3.0",
-    "Prism.Windows": "6.3.0"
+    "Prism.Windows": "6.3.0",
+    "SimpleInjector.Extensions.LifetimeScoping": "4.0.0"
   },
   "frameworks": {
     "uap10.0": {}

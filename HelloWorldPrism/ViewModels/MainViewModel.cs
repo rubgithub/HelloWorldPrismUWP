@@ -26,6 +26,10 @@ namespace HelloWorldPrism.ViewModels
             set { SetProperty(ref _canGoBack, value); }
         }
 
+        //public MainViewModel()
+        //{
+            
+        //}
 
         public MainViewModel(INavigationService navigationService, IProductRepository productRepository)
         {

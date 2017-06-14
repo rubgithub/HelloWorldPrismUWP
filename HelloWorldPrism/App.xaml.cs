@@ -2,6 +2,7 @@
 using HelloWorldPrism.Views;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Logging;
+using Prism.Mvvm;
 using Prism.SimpleInjector.Windows;
 using SimpleInjector;
 using System;
@@ -16,12 +17,13 @@ namespace HelloWorldPrism
 {
     sealed partial class App 
     {
+        public new static PrismSimpleInjectorApplication Current => (PrismSimpleInjectorApplication)Application.Current;
+        public new Container Container { get; private set; }
+
         public App()
         {
             InitializeComponent();
         }
-
-        public new Container Container { get; private set; }
 
         protected override Task OnLaunchApplicationAsync(LaunchActivatedEventArgs args)
         {
@@ -33,6 +35,15 @@ namespace HelloWorldPrism
         {
             Logger.Log("Creating and Configuring Container", Category.Debug, Priority.Low);
             Container = CreateContainer();
+            if (Container == null)
+            {
+                throw new InvalidOperationException("Simple Injector container is null");
+            }
+
+            Logger.Log("Configuring Container", Category.Debug, Priority.Low);
+            ConfigureContainer();
+            Logger.Log("Configuring ServiceLocator", Category.Debug, Priority.Low);
+            ConfigureServiceLocator();
         }
 
         protected override Container CreateContainer()
@@ -41,9 +52,8 @@ namespace HelloWorldPrism
         }
 
         protected override void ConfigureContainer()
-        {
-            Container.Verify();
-            Container.Register<IProductRepository, ProductRepository>(Lifestyle.Scoped);
+        {            
+            Container.Register<IProductRepository, ProductRepository>(Lifestyle.Transient);
         }
 
 
@@ -68,6 +78,8 @@ namespace HelloWorldPrism
             Container.RegisterSingleton(DeviceGestureService);
             Container.RegisterSingleton(NavigationService);
             Container.RegisterSingleton(EventAggregator);
+
+            ViewModelLocationProvider.SetDefaultViewModelFactory(viewMo‌​delType => Container.GetInstance(viewMo‌​delType));
             return Task.CompletedTask;
         }
 
